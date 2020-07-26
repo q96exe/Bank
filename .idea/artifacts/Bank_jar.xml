@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Bank:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Bank_jar</output-path>
+    <root id="archive" name="Bank.jar">
+      <element id="module-output" name="Bank" />
+      <element id="extracted-dir" path="$USER_HOME$/Desktop/Coding/API.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
