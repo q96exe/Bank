@@ -1,6 +1,7 @@
 package de.marv.bank.main;
 
 import de.marv.bank.utils.Data;
+import de.marv.bank.utils.MySQLFile;
 import de.omel.api.mysql.Database;
 import de.omel.api.mysql.MySQL;
 import org.bukkit.Bukkit;
@@ -10,12 +11,15 @@ import java.sql.SQLException;
 
 public class Main extends JavaPlugin {
     public static Main instance;
+    private MySQLFile mySQLFile;
     public static Database database;
 
     @Override
     public void onEnable() {
         instance = this;
-        database = new MySQL("localhost", "3306", "bank", "root", "Mine#497");
+        mySQLFile.createNewFile();
+        database = new MySQL((String) MySQLFile.cfg.get("MYSQL.HOST"), "3306", (String) MySQLFile.cfg.get("MYSQL.DATABASE"),
+                (String)MySQLFile.cfg.get("MYSQL.USER"), (String)MySQLFile.cfg.get("MYSQL.PASSWORD"));
 
         try {
             if(database.checkConnection()) {
