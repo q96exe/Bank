@@ -25,7 +25,7 @@ public class Main extends JavaPlugin {
             if(database.checkConnection()) {
                 Bukkit.getConsoleSender().sendMessage(Data.prefix + "§aDas Plugin wurde erfolgreich aktiviert");
                 Bukkit.getConsoleSender().sendMessage(Data.prefix + "§aMySQL erfolgreich verbunden");
-                database.updateSQL("CREATE TABLE IF NOT EXISTS UUID(VARCHAR (100), Guthaben int);");
+                database.updateSQL("CREATE TABLE IF NOT EXISTS BANK(UUID VARCHAR (100), GUTHABEN int);");
             }
         } catch (SQLException | ClassNotFoundException e) {
             Bukkit.getConsoleSender().sendMessage(Data.prefix + "§cMySQL Verbindung fehlgeschlagen! Bitte überprüfe die MySQL Daten!");
