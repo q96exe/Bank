@@ -32,10 +32,8 @@ public class BankManager {
         if (!playerExists(uuid)) {
             try {
                 database.updateSQL("INSERT INTO 'GUTHABEN'('UUID', 'GUTHABEN') VALUES ('" + uuid + "', '0');");
-            } catch (SQLException throwables) {
+            } catch (SQLException | ClassNotFoundException throwables) {
                 throwables.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
             }
         }
     }
@@ -46,10 +44,8 @@ public class BankManager {
             if(rs.next()) {
                 return (rs.getString("UUID") != null);
             }
-        } catch (SQLException throwables) {
+        } catch (SQLException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
         }
         return false;
     }
@@ -64,10 +60,8 @@ public class BankManager {
                 } else {
                     rs.getInt("GUTHABEN");
                 }
-            } catch (SQLException throwables) {
+            } catch (SQLException | ClassNotFoundException throwables) {
                 throwables.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
             }
         } else {
             createBankAccount(uuid);
@@ -81,10 +75,8 @@ public class BankManager {
             int add = getGuthaben(uuid) + amount;
             try {
                 database.updateSQL("UPDATE BANK SET GUTHABEN= '" + add + "' WHERE UUID= '" + uuid + "';");
-            } catch (SQLException throwables) {
+            } catch (SQLException | ClassNotFoundException throwables) {
                 throwables.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
             }
 
         } else {
@@ -98,10 +90,8 @@ public class BankManager {
             int removed = getGuthaben(uuid) - amount;
             try {
                 database.updateSQL("UPDATE BANK SET GUTHABEN= '" + removed + "' WHERE UUID= '\" + uuid + \"';");
-            } catch (SQLException throwables) {
+            } catch (SQLException | ClassNotFoundException throwables) {
                 throwables.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
             }
         } else {
             createBankAccount(uuid);
@@ -113,10 +103,8 @@ public class BankManager {
         if(playerExists(uuid)) {
             try {
                 database.updateSQL("UPDATE BANK SET GUTHABEN= '0' WHERE UUID= '" + uuid + "';");
-            } catch (SQLException throwables) {
+            } catch (SQLException | ClassNotFoundException throwables) {
                 throwables.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
             }
         }
     }
@@ -124,11 +112,9 @@ public class BankManager {
     public void deleteBankAccount(String uuid) {
         if(playerExists(uuid)) {
             try {
-                database.updateSQL("DELETE FROM TABLE BANK WHERE UUID= '" + uuid + "';");
-            } catch (SQLException throwables) {
+                database.updateSQL("DELETE * FROM TABLE BANK WHERE UUID= '" + uuid + "';");
+            } catch (SQLException | ClassNotFoundException throwables) {
                 throwables.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
             }
         }
     }
